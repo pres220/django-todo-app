@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, TemplateView, DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -43,4 +43,11 @@ class TodoUpdateView(LoginRequiredMixin, UpdateView):
         todo.date = timezone.now()
         todo.save()
         return super().form_valid(form)
+
+
+class TodoDeleteView(DeleteView):
+    model = Todo
+    template_name = 'todo_delete.html'
+    success_url = reverse_lazy('todo_list')
+
 
