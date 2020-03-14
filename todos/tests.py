@@ -20,7 +20,7 @@ class HomePageTest(SimpleTestCase):
 class SignUpPageTest(SimpleTestCase):
 
     def test_signup_status_code(self):
-        response = self.client.get('/users/signup/')
+        response = self.client.get('/accounts/signup/')
         self.assertEqual(response.status_code, 200)
 
     def test_signup_reverse_url(self):

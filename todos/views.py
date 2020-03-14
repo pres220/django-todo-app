@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, TemplateView, DetailView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.forms import UserCreationForm
@@ -12,21 +13,26 @@ class HomePageView(TemplateView):
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
 
-class TodoListView(ListView):
+class TodoListView(LoginRequiredMixin, ListView):
     model = Todo
+    context_object_name = 'todo_list'
+    ordering = ['-date']
     template_name = 'todo_list.html'
 
+    def get_queryset(self):
+        return Todo.objects.filter(author=self.request.user)
 
-class TodoDetailView(DetailView):
+
+class TodoDetailView(LoginRequiredMixin, DetailView):
     model = Todo
     template_name = 'todo_detail.html'
 
 
-class TodoUpdateView(UpdateView):
+class TodoUpdateView(LoginRequiredMixin, UpdateView):
     model = Todo
     fields = ('title', 'body')
     template_name = 'todo_edit.html'
