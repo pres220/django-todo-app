@@ -3,15 +3,12 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-    <h1>Home Page</h1>
-    {% if user.is_authenticated %}
-        Welcome, {{ user.username }}!
-        <p>
-            <a href="{% url 'logout' %}">Log Out</a>
-        </p>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'login' %}">Log In</a>
-        <a href="{% url 'signup' %}">Sign Up</a>
-    {% endif %}
+<div class="jumbotron">
+    <h1 class="display-4">Todo App</h1>
+    <p class="lead">A simple todo application demonstrating CRUD functionality.</p>
+    <hr class="my-4">
+    <p>Built with Python, Django, and Bootstrap 4</p>
+    <a class="btn btn-primary" href="{% url 'login' %}">Log In</a>
+    <a class="btn btn-primary" href="{% url 'signup' %}">Sign Up</a>
+</div>
 {% endblock content %}

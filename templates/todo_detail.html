@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Todo Detail{% endblock title %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <span class="text-muted">{{ todo.date }}</span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                {{ todo.title }}
+            </h5>
+            <p class="card-text">
+                {{ todo.body }}
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-info" href="{% url 'todo_edit' todo.pk %}">Edit</a>
+            <a class="btn btn-primary" href="">Complete</a>
+            <a class="btn btn-danger" href="">Delete</a>
+        </div>
+    </div>
+    <a href="{% url 'todo_list' %}">Return to List</a>
+{% endblock content %}
