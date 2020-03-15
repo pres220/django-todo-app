@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, ListView, TemplateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
@@ -20,19 +20,21 @@ class SignUpView(CreateView):
 class TodoListView(LoginRequiredMixin, ListView):
     model = Todo
     context_object_name = 'todo_list'
-    ordering = ['-date']
     template_name = 'todo_list.html'
 
     def get_queryset(self):
-        return Todo.objects.filter(author=self.request.user)
+        return Todo.objects.filter(author=self.request.user).order_by('-date')
 
 
-class TodoDetailView(LoginRequiredMixin, DetailView):
+class TodoDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Todo
     template_name = 'todo_detail.html'
 
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
-class TodoUpdateView(LoginRequiredMixin, UpdateView):
+
+class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Todo
     fields = ('title', 'body')
     template_name = 'todo_edit.html'
@@ -44,11 +46,17 @@ class TodoUpdateView(LoginRequiredMixin, UpdateView):
         todo.save()
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
-class TodoDeleteView(DeleteView):
+
+class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Todo
     template_name = 'todo_delete.html'
     success_url = reverse_lazy('todo_list')
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
 
 class TodoCreateView(LoginRequiredMixin, CreateView):
