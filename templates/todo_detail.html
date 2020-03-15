@@ -17,8 +17,8 @@
         </div>
         <div class="card-footer">
             <a class="btn btn-info" href="{% url 'todo_edit' todo.pk %}">Edit</a>
-            <a class="btn btn-primary" href="">Complete</a>
-            <a class="btn btn-outline-danger" href="">Delete</a>
+            <a class="btn btn-primary" href="{% url 'todo_complete' todo.pk %}">Complete</a>
+            <a class="btn btn-outline-danger float-right" href="{% url 'todo_delete' todo.pk %}">Delete</a>
         </div>
     </div>
     <a href="{% url 'todo_list' %}">Return to List</a>

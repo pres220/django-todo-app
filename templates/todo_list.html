@@ -4,7 +4,7 @@
 
 {% block content %}
     {% for todo in todo_list %}
-        <div class="card">
+        <div class="card my-4">
             <div class="card-header">
                 <span class="text-muted">{{ todo.date }}</span>
             </div>
@@ -18,8 +18,7 @@
             </div>
             <div class="card-footer">
                 <a class="btn btn-info" href="{% url 'todo_edit' todo.pk %}">Edit</a>
-                <a class="btn btn-primary" href="">Complete</a>
-                <a class="btn btn-outline-danger float-right" href="{% url 'todo_delete' todo.pk %}">Delete</a>
+                <a class="btn btn-outline-danger" href="{% url 'todo_delete' todo.pk %}">Delete</a>
             </div>
         </div>
     {% endfor %}

@@ -63,9 +63,12 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todo
     template_name = 'todo_new.html'
     fields = ('title', 'body')
+    success_url = reverse_lazy('todo_list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
 
 
