@@ -5,10 +5,16 @@
 {% block content %}
 <div class="jumbotron">
     <h1 class="display-4">Todo App</h1>
-    <p class="lead">A simple todo application demonstrating CRUD functionality.</p>
-    <hr class="my-4">
-    <p>Built with Python, Django, and Bootstrap 4</p>
-    <a class="btn btn-primary" href="{% url 'login' %}">Log In</a>
-    <a class="btn btn-primary" href="{% url 'signup' %}">Sign Up</a>
+    <p class="lead">
+        A simple task management web application demonstrating CRUD functionality.
+    </p>
+    <hr class="my-3">
+    <p>Built with Python, Django, & Bootstrap 4</p>
+    {% if user.is_authenticated %}
+        <a class="btn btn-success" href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+        <a class="btn btn-success" href="{% url 'login' %}">Log In</a>
+        <a class="btn btn-success" href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
 </div>
 {% endblock content %}

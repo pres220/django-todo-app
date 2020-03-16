@@ -14,7 +14,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar-content">
             {% if user.is_authenticated %}
-            <ul class="navbar-nav ml-2">
+            <ul class="navbar-nav ml-2 mr-auto">
                 <li class="nav-item">
                    <a class="nav-link" href="{% url 'todo_list' %}">List Todos</a>
                 </li>
@@ -22,18 +22,10 @@
                     <a class="nav-link" href="{% url 'todo_new' %}">Add Todo</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                        {{ user.username }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                    </div>
-                </li>
-            </ul>
+            <div>
+                <a class="btn btn-light" href="{% url 'password_change' %}">Change Password</a>
+                <a class="btn btn-light" href="{% url 'logout' %}">Log Out</a>
+            </div>
             {% else %}
             <div class="ml-auto">
                 <a class="btn btn-light" href="{% url 'login' %}">Log In</a>
