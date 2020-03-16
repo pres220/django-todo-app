@@ -38,6 +38,7 @@ class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Todo
     fields = ('title', 'description')
     template_name = 'todo_edit.html'
+    # success_url determined by Todo's get_absolute_url automatically
 
     def form_valid(self, form):
         # Update date timestamp
@@ -63,12 +64,11 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todo
     template_name = 'todo_new.html'
     fields = ('title', 'description')
-    success_url = reverse_lazy('todo_list')
+    # success_url determined by Todo's get_absolute_url automatically
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
 
 
 

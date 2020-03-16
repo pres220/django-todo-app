@@ -3,29 +3,13 @@
 {% block title %}Todo List{% endblock title %}
 
 {% block content %}
-    <div class="alert alert-info text-center">
-        You have {{ todo_list|length }} uncompleted todo{{ todo_list|length|pluralize }}.
-        {% if not todo_list %}
-           Click 'Add Todo' to get started.
-        {% endif %}
-    </div>
-    {% for todo in todo_list %}
-        <div class="card my-4">
-            <div class="card-header">
-                <span class="text-muted">{{ todo.date }}</span>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{ todo.title }}
-                </h5>
-                <p class="card-text">
-                    {{ todo.description }}
-                </p>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-info" href="{% url 'todo_edit' todo.pk %}">Edit</a>
-                <a class="btn btn-outline-danger" href="{% url 'todo_delete' todo.pk %}">Delete</a>
-            </div>
-        </div>
-    {% endfor %}
+<div class="alert alert-info text-center">
+    You have {{ todo_list|length }} uncompleted todo{{ todo_list|length|pluralize }}.
+    {% if not todo_list %}
+       Click 'Add Todo' to get started.
+    {% endif %}
+</div>
+{% for todo in todo_list %}
+    {% include 'todo_card_snippet.html' %}
+{% endfor %}
 {% endblock content %}
