@@ -36,7 +36,7 @@ class TodoDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Todo
-    fields = ('title', 'body')
+    fields = ('title', 'description')
     template_name = 'todo_edit.html'
 
     def form_valid(self, form):
@@ -62,7 +62,7 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todo
     template_name = 'todo_new.html'
-    fields = ('title', 'body')
+    fields = ('title', 'description')
     success_url = reverse_lazy('todo_list')
 
     def form_valid(self, form):

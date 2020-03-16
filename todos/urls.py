@@ -10,9 +10,9 @@ from .views import (
 
 urlpatterns = [
     path('', TodoListView.as_view(), name='todo_list'),
-    path('<int:pk>/', TodoDetailView.as_view(), name='todo_detail'),
-    path('<int:pk>/edit/', TodoUpdateView.as_view(), name='todo_edit'),
-    path('<int:pk>/delete/', TodoDeleteView.as_view(), name='todo_delete'),
+    path('<uuid:pk>/', TodoDetailView.as_view(), name='todo_detail'),
+    path('<uuid:pk>/edit/', TodoUpdateView.as_view(), name='todo_edit'),
+    path('<uuid:pk>/delete/', TodoDeleteView.as_view(), name='todo_delete'),
     path('new/', TodoCreateView.as_view(), name='todo_new'),
 ]
 

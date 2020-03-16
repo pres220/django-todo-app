@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import uuid
 
 
 class Todo(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=80)
-    body = models.TextField(max_length=200, blank=True)
+    description = models.TextField(max_length=200, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
