@@ -9,16 +9,19 @@ from .models import Todo
 
 
 class HomePageView(TemplateView):
+    """Renders the homepage."""
     template_name = 'home.html'
 
 
 class SignUpView(CreateView):
+    """Renders a signup page."""
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
 
 class TodoListView(LoginRequiredMixin, ListView):
+    """Renders a user's Todo list in most recent order."""
     model = Todo
     context_object_name = 'todo_list'
     template_name = 'todo_list.html'
@@ -28,6 +31,7 @@ class TodoListView(LoginRequiredMixin, ListView):
 
 
 class TodoDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    """Renders a single Todo."""
     model = Todo
     template_name = 'todo_detail.html'
 
@@ -36,6 +40,7 @@ class TodoDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 
 class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """Renders a Todo edit form on GET and updates a Todo on POST."""
     model = Todo
     fields = ('title', 'description')
     template_name = 'todo_edit.html'
@@ -54,6 +59,7 @@ class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """Renders a confirmation page on GET and deletes a Todo on POST."""
     model = Todo
     template_name = 'todo_delete.html'
     success_url = reverse_lazy('todo_list')
@@ -63,6 +69,7 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class TodoCreateView(LoginRequiredMixin, CreateView):
+    """Renders a Todo creation form on GET and inserts a new Todo on POST."""
     model = Todo
     template_name = 'todo_new.html'
     fields = ('title', 'description')

@@ -6,6 +6,7 @@ from django.urls import reverse
 
 
 class Todo(models.Model):
+    """Models a single task belonging to a user."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=80)
