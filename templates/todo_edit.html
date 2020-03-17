@@ -5,11 +5,11 @@
 {% block title %}Edit Todo{% endblock title %}
 
 {% block content %}
-    <h1>Edit Todo</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-success">Update</button>
-        <a class="btn btn-outline-info" href="{% url 'todo_list' %}">Cancel</a>
-    </form>
+  <h1>Edit Todo</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-success">Update</button>
+    <a class="btn btn-outline-info" href="{% url 'todo_list' %}">Cancel</a>
+  </form>
 {% endblock content %}
