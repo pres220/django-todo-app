@@ -1,9 +1,10 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import CreateView, ListView, TemplateView, DetailView
-from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.views.generic.edit import DeleteView, UpdateView
+
 from .models import Todo
 
 
@@ -38,6 +39,7 @@ class TodoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Todo
     fields = ('title', 'description')
     template_name = 'todo_edit.html'
+
     # success_url determined by Todo's get_absolute_url automatically
 
     def form_valid(self, form):
@@ -64,11 +66,9 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todo
     template_name = 'todo_new.html'
     fields = ('title', 'description')
+
     # success_url determined by Todo's get_absolute_url automatically
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-
-

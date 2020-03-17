@@ -1,8 +1,9 @@
-from django.test import SimpleTestCase, TestCase
-from django.urls import reverse, resolve
 from django.contrib.auth.models import User
-from .views import *
+from django.test import SimpleTestCase, TestCase
+from django.urls import resolve, reverse
+
 from .models import Todo
+from .views import *
 
 
 class HomePageTest(SimpleTestCase):
@@ -355,5 +356,3 @@ class TodoCreateViewTests(TestCase):
         self.assertContains(response, 'new_title')
         self.assertContains(response, 'new_description')
         self.assertContains(response, 'You have 1 uncompleted todo.')
-
-
