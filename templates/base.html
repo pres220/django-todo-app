@@ -10,45 +10,45 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<nav class="nav navbar-expand-sm navbar-dark bg-info shadow-lg p-2 fixed-top">
-  <a class="navbar-brand mr-auto" href="{% url 'home' %}">Todo App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar-content">
-    {% if user.is_authenticated %}
-      <ul class="navbar-nav ml-2 mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'todo_list' %}">List Todos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'todo_new' %}">Add Todo</a>
-        </li>
-      </ul>
-      <div>
-        <a class="btn btn-light" href="{% url 'password_change' %}">Change Password</a>
-        <a class="btn btn-light" href="{% url 'logout' %}">Log Out</a>
-      </div>
-    {% else %}
-      <div class="ml-auto">
-        <a class="btn btn-light" href="{% url 'login' %}">Log In</a>
-        <a class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
-      </div>
-    {% endif %}
+  <nav class="nav navbar-expand-sm navbar-dark bg-info shadow-lg p-2 fixed-top">
+    <a class="navbar-brand mr-auto" href="{% url 'home' %}">Todo App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-content">
+      {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-2 mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'todo_list' %}">List Todos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'todo_new' %}">Add Todo</a>
+          </li>
+        </ul>
+        <div>
+          <a class="btn btn-light" href="{% url 'password_change' %}">Change Password</a>
+          <a class="btn btn-light" href="{% url 'logout' %}">Log Out</a>
+        </div>
+      {% else %}
+        <div class="ml-auto">
+          <a class="btn btn-light" href="{% url 'login' %}">Log In</a>
+          <a class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+  <div class="container">
+    {% block content %}
+    {% endblock content %}
   </div>
-</nav>
-<div class="container">
-  {% block content %}
-  {% endblock content %}
-</div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+          crossorigin="anonymous"></script>
 </body>
 </html>

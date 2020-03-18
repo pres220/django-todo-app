@@ -3,7 +3,7 @@
 {% block title %}Todo Detail{% endblock title %}
 
 {% block content %}
-  {% include 'todo_card_snippet.html' %}
-  <hr>
-  <a class="btn btn-info" href="{% url 'todo_list' %}">Return to Todo List</a>
+{% include 'todo_card_snippet.html' %}
+<hr>
+<a class="btn btn-info" href="{% url 'todo_list' %}">Return to Todo List</a>
 {% endblock content %}
